@@ -11,15 +11,18 @@ func changeVal2(myPtr *int) {
 	*myPtr = 12
 }
 
-func dblArrVals(arr *[4]int) {
-	for i := 0; i < 4; i++ {
-		arr[i] *= 2
+func getAverage(nums ...float64) float64 {
+	var sum float64 = 0.0
+	var NumSize float64 = float64(len(nums))
+
+	for _, val := range nums {
+		sum += val
 	}
+	return (sum / NumSize)
 }
 
 func main() {
 	// func funcName(parameters) returnType { BODY }
-	pArr := [4]int{1, 2, 3, 4}
-	dblArrVals( &pArr ) // double array values
-	pl(pArr)
+	iSlice := []float64{11,13,17}
+	pf("Average: %.3f\n", getAverage(iSlice...))
 }
