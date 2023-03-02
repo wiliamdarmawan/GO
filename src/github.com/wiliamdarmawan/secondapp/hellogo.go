@@ -7,16 +7,14 @@ import (
 var pl = fmt.Println
 var pf = fmt.Printf
 
-func getArraySum(arr []int) int {
-	sum := 0
-	for _, v := range arr {
-		sum += v
-	}
-	return sum
+func changeVal2(myPtr *int) {
+	*myPtr = 12
 }
 
 func main() {
 	// func funcName(parameters) returnType { BODY }
-	vArr := []int{1, 2, 3, 4, 5}
-	pl("Array Sum:", getArraySum(vArr))
+	f3 := 5
+	pl("f3 before func:", f3)
+	changeVal2(&f3)
+	pl("f3 after func:", f3)
 }
