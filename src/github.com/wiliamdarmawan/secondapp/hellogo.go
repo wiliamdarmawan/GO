@@ -11,16 +11,15 @@ func changeVal2(myPtr *int) {
 	*myPtr = 12
 }
 
+func dblArrVals(arr *[4]int) {
+	for i := 0; i < 4; i++ {
+		arr[i] *= 2
+	}
+}
+
 func main() {
 	// func funcName(parameters) returnType { BODY }
-	f4 := 5
-	var f4Ptr *int = &f4
-	pl("f4 Address:", f4Ptr)
-	pl("f4 Value:", *f4Ptr)
-	*f4Ptr = 11
-	pl("f4 Value:", *f4Ptr)
-
-	pl("f4 before func:", f4)
-	changeVal2(&f4)
-	pl("f4 after func:", f4)
+	pArr := [4]int{1, 2, 3, 4}
+	dblArrVals( &pArr ) // double array values
+	pl(pArr)
 }
