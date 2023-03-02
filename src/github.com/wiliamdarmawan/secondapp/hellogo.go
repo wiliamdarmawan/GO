@@ -1,23 +1,44 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"log"
+	"math/rand"
+	"os"
+	"strconv"
+	"strings"
+	"time"
 )
 
 var pl = fmt.Println
 var pf = fmt.Printf
 
 func main() {
-	// for initialization; condition;
-	// postStatement { BODY }
+	seedSecs := time.Now().Unix()
+	rand.Seed(seedSecs)
+	randNum := rand.Intn(50)
 
-	for x := 1; x <=5; x++{
-		pl(x)
-	}
+	for true {
+		pl("Guess the number between 0 and 50: ")
+		pl("Random Number is:", randNum)
+		reader := bufio.NewReader(os.Stdin)
+		guess, err := reader.ReadString('\n')
+		if err != nil {
+			log.Fatal(err)
+		}
 
-	fX := 0
-	for fX <= 5 {
-		pl(fX)
-		fX++
+		guess = strings.TrimSpace((guess))
+		iGuess, err := strconv.Atoi(guess)
+		if err != nil {
+			log.Fatal(err)	
+		}else if iGuess > randNum {
+			pl("Pick a lower value")
+		}else if iGuess < randNum{
+			pl("Pick a higher value")
+		} else{
+			pl("You guesssed it")
+			break
+		}
 	}
 }
