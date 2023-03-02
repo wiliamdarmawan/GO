@@ -2,15 +2,19 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 var pl = fmt.Println
 var pf = fmt.Printf
 
 func main() {
-	// Time
-	now := time.Now()
-	pl(now.Year(), now.Month(), now.Day())
-	pl(now.Hour(), now.Minute(), now.Second())
+	pl("5 + 4", 5+4)
+	pl("5 - 4", 5-4)
+	pl("5 * 4", 5*4)
+	pl("5 / 4", 5/4)
+	pl("5 % 4", 5%4)
+	mInt := 1
+	mInt += 1
+	mInt++
+	pl(mInt)
 }
