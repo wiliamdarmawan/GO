@@ -7,33 +7,28 @@ import (
 var pl = fmt.Println
 var pf = fmt.Printf
 
-type contact struct {
-	fName string
-	lName string
-	phone string
+type Tsp float64
+type Tbs float64
+type ML float64
+
+func tspToML(tsp Tsp) ML {
+	return ML(tsp * 4.92)
 }
 
-type business struct {
-	name string
-	address string
-	contact
-}
-
-func (b business) info() {
-	pf("Contact at %s is %s %s", b.name, 
-	b.contact.fName, b.contact.lName)
+func tbsToML(tbs Tbs) ML {
+	return ML(tbs * 14.79)
 }
 
 func main() {
-	con1 := contact { 
-		fName: "Wiliam", 
-		lName: "Darmawan", 
-		phone: "1234567890",
-	}
-	biz1 := business { 
-		name: "Wiliam's Business", 
-		address: "123 Main St", 
-		contact: con1,
-	}
-	biz1.info()
+	 ml1 := ML(Tsp(3) * 4.92)
+	 pf("3 TSPS = %.2f ml\n", ml1)
+
+	 ml2 := ML(Tbs(3) * 14.79)
+	 pf("3 Tbs = %.2f ml\n", ml2)
+
+	 pl("2 tsp + 4 tsp = ", tspToML(2) + tspToML(4), "ml")
+
+	 pf("3 Tsp = %.2f ml", tspToML(3))
+	 pf("3 Tbs = %.2f ml", tbsToML(3))
+
 }
