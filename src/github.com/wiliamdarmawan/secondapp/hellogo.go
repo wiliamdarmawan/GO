@@ -7,24 +7,35 @@ import (
 var pl = fmt.Println
 var pf = fmt.Printf
 
-type Tsp float64
-type Tbs float64
-type ML float64
-
-func tspToML(tsp Tsp) ML {
-	return ML(tsp * 4.92)
+type Animal interface {
+	AngrySound()
+	HappySound()
 }
 
-func (tbs Tsp) ToMLs() ML {
-	return ML(tbs * 4.92)
+type Cat string
+
+func (c Cat) Attack() {
+	pl("cat Attacks its Prey")
 }
 
+func (c Cat) Name() string{
+	return string(c)
+}
 
-func (tbs Tbs) ToMLs() ML{
-	return ML(tbs * 14.79)
+func (c Cat) AngrySound() {
+	pl("Cat says Hissss")
+}
+
+func (c Cat) HappySound() {
+	pl("Cat says Purrrr")
 }
 
 func main() {
-	tsp1 := Tsp(3)
-	pf("%.2f tsp = %.2f ML\n" , tsp1, tsp1.ToMLs())
+	var kitty Animal
+	kitty = Cat("Kitty")
+	kitty.AngrySound()
+	
+	var kitty2 Cat = kitty.(Cat)
+	kitty2.Attack()
+	pl("Cats Name:", kitty2.Name())
 }
