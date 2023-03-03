@@ -2,42 +2,32 @@ package main
 
 import (
 	"fmt"
-	"sync"
-	"time"
 )
 
 var pl = fmt.Println
 var pf = fmt.Printf
 
-type Account struct{
-	balance int
-	lock sync.Mutex
+func useFunction(f func(int, int) int, x, y int) {
+	pl("Answer:", f(x, y))
 }
 
-func (a *Account) GetBalance() int {
-	a.lock.Lock()
-	defer a.lock.Unlock()
-	return a.balance
-}
-
-func (a *Account) Withdraw(v int) {
-	a.lock.Lock()
-	defer a.lock.Unlock()
-
-	if v > a.balance {
-		pl("Not enough money in account")
-	} else {
-		pf("%d withdrawn: Balance : %d\n", v, a.balance)
-		a.balance -= v
-	}
+func sumValues(x, y int) int {
+	return x + y
 }
 
 func main() {
-	var acct Account
-	acct.balance = 100
-	pl("Balance : ", acct.GetBalance())
-	for i := 0; i < 12; i++ {
-		go acct.Withdraw(10)
+	intSum := func(x, y int) int {
+		return x + y
 	}
-	time.Sleep(2 * time.Second)
+	pl("5 + 4 =", intSum(5, 4))
+
+	samp1 := 1
+	changeVar := func() {
+		samp1 += 1
+	}
+
+	changeVar()
+	pl("samp1 =", samp1)
+
+	useFunction(sumValues, 5, 8)
 }
