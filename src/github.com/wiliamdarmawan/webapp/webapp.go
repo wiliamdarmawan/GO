@@ -88,4 +88,5 @@ func main() {
 	http.HandleFunc("/create", createHandler)
 
 	err := http.ListenAndServe(("localhost:8080"), nil)
+	log.Fatal(err)
 }
